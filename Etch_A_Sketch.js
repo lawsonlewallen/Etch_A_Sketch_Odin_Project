@@ -40,7 +40,14 @@ button.addEventListener("onclick", getUserInput())
 
 //event listener, listens to parent and affects the targeted child
 gridParent.addEventListener("mouseover", (event) => {
-    event.target.classList.replace('unrolled', 'rolledover')});
-
+    let pixelColor = getComputedStyle(event.target).backgroundColor
+    let currentOpacity = getComputedStyle(event.target).opacity;
+    if ( pixelColor === 'rgb(255, 255, 255)' && currentOpacity === '1'){
+        event.target.classList.replace('unrolled', 'rolledover');
+        event.target.style.opacity = '.1';
+    } else if (+currentOpacity < 1){
+            event.target.style.opacity = (+currentOpacity + .1).toString();
+    } else {};
+});
 
 
