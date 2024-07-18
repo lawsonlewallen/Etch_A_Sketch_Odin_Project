@@ -35,12 +35,23 @@ function getUserInput() {
     createGrid(userInput);
 }
 
+function randomColor() {
+    let redValue = (Math.random()*225);
+    let greenValue = (Math.random()*225);
+    let blueValue = (Math.random()*225);
+    return `rgb( ${redValue}, ${greenValue}, ${blueValue})`;
+}
+
 //event listener to run createGrid when button is clicked
 button.addEventListener("onclick", getUserInput())
 
 //event listener, listens to parent and affects the targeted child
 gridParent.addEventListener("mouseover", (event) => {
-    event.target.classList.replace('unrolled', 'rolledover')});
+        if (getComputedStyle(event.target).backgroundColor === 'rgb(255, 255, 255)') {
+            event.target.style.backgroundColor = randomColor();}
+        else {}
+        }
+    );
 
 
 
